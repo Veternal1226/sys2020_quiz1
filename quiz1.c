@@ -19,6 +19,7 @@ void add_entry(node_t **head, int new_value)
     while (*indirect)
         indirect = &(*indirect)->next;
     *indirect = new_node;
+    return;
 }
 
 node_t *find_entry(node_t *head, int value)
@@ -38,6 +39,7 @@ void remove_entry(node_t **head, node_t *entry)
 
     *indirect = entry->next;
     free(entry);
+    return;
 }
 
 void swap_pair(node_t **head)
@@ -51,7 +53,7 @@ void swap_pair(node_t **head)
     return;
 }
 
-void *reverse(node_t **head)
+void reverse(node_t **head)
 {
     node_t *cursor = NULL;
     while (*head) {
@@ -61,6 +63,7 @@ void *reverse(node_t **head)
         *head = next;
     }
     *head = cursor;
+    return;
 }
 
 void print_list(node_t *head)
@@ -68,6 +71,7 @@ void print_list(node_t *head)
     for (node_t *current = head; current; current = current->next)
         printf("%d ", current->value);
     printf("\n");
+    return;
 }
 
 int main(int argc, char const *argv[])
