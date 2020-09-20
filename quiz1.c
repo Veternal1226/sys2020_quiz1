@@ -53,8 +53,24 @@ void swap_pair(node_t **head)
     return;
 }
 
+node_t *rev_recursive(node_t *head)
+{
+    if (!head || !(head)->next) {
+        return head;
+    }
+    node_t *new_head = rev_recursive(head->next);
+    if (head->next) {
+        head->next->next = head;  // change head->next's next to previous layer's head
+    }
+    head->next = NULL;  // always set new tail to NULL
+    return new_head;
+    
+}
+
 void reverse(node_t **head)
 {
+    *head = rev_recursive(*head);
+    /* //non recursive version
     node_t *cursor = NULL;
     while (*head) {
         node_t *next = (*head)->next;
@@ -63,6 +79,7 @@ void reverse(node_t **head)
         *head = next;
     }
     *head = cursor;
+    */
     return;
 }
 
